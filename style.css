@@ -1,0 +1,30 @@
+.h1 {
+    margin: auto;
+    text-align: center;
+    margin-top: 50px;
+}
+table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 50%;
+    margin: auto;
+    margin-left: 350px;
+    margin-top: 15px;
+}
+
+td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even) {
+    background-color: #dddddd;
+}
+
+#deletebutton
+{
+    position: relative;
+    left: 50px;
+    font-size: 15px;
+}
