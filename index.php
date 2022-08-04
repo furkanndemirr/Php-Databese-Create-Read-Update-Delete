@@ -54,10 +54,12 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and  $_REQUEST['task']=="insert")
     $conn=null;
     header("location: index.php");
 }
+
 ?>
 
     <table>
         <?php
+        echo "Hello";
         $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
         echo "<br>";
         $sql=" SELECT * from users" ;
