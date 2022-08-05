@@ -1,5 +1,6 @@
 <?php
-$servername = "127.0.0.1";
+$servername = $_GET['sername'];
 $username = "root";
 $password = "";
 $database= "db1";
+

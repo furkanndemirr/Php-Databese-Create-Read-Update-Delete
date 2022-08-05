@@ -1,11 +1,11 @@
-
+<link rel="stylesheet" href="style.css">
 <?php
-
+error_reporting(0);
 include ("dbconf.php");
 
 $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
 ?>
-<div class="fotoekle">
+<div>
     <?php
 
         $id=$_REQUEST['id'];
@@ -16,13 +16,19 @@ $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password)
         if($sonuc->rowCount()>0)
         {
             ?>
-            <br>**********NEW RECORD EDIT MENU***************** <br><br>
-            <form method="post" action="">
-                Name and Surname : <input type="text" name="name" value="<?=$satir['name']?>"><br>
-                Bolum : <input type="text" name="surname" value="<?=$satir['surname']?>"><br>
-                Pass : <input type="text" name="age" value="<?=$satir['age']?>"><br>
-                <input type="submit" value="Update">
-            </form>
+            <br>
+            <p style="text-align: center">
+                **************NEW RECORD EDIT MENU***************** </p>
+            <br>
+            <div class="div2">
+                <form method="post">
+                    Name and Surname : <br><input type="text" name="name" value="<?=$satir['name']?>"><br>
+                    Bolum : <br><input type="text" name="surname" value="<?=$satir['surname']?>"><br>
+                    Pass : <br><input type="text" name="age" value="<?=$satir['age']?>"><br>
+                    <input type="submit" value="Update" style="margin-top: 10px;margin-left: 50px">
+                </form>
+            </div>
+
             <?php
 
 

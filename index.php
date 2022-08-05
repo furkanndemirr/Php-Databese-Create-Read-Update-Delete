@@ -2,13 +2,34 @@
 <head>
     <title>COMPRO OPENSHIFT</title>
     <link rel="stylesheet" href="style.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body>
-<img style="width: 200px;margin-left: 570px" src="logo%20(1).png">
+<div class="img">
+<img style="width: 200px" src="logo%20(1).png">
+</div>
 <h1 class="h1">Backup Test Page</h1>
-<div class="fotoekle">
 
-    <form action="?task=insert" method="post" style="width: 15%; margin: auto;">
+<?php
+error_reporting(0);
+include("dbconf.php");
+?>
+
+<?php
+try {
+    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    print "Bağlantı Başarılı!";
+}
+catch (PDOException $e) {?>
+<button><a href="serverlogin.php" style="text-decoration: none;color: black">Server Login</a></button>
+    <?php
+print "<br>Connection could not be established. Error : " . $e->getMessage() . "<br/>";
+die();}?>
+
+
+<div class="div">
+
+    <form action="?task=insert" method="post"">
         <br><br><br>
         <td>Name :
             <input type="text" name="uname">
@@ -23,13 +44,24 @@
         </td>
         <br><br>
         <td>
-            <input style="margin-left: 50px" type="submit" value="Submit">
+            <input type="submit" value="Submit" style="margin-right: 15px">
+            <button><a href="serverlogin.php" style="text-decoration: none;color: black">Server Logout</a>
         </td>
     </form>
 </div>
+<?php
+/*
+?>
+}
+catch (PDOException $e)
+{
+    die($e->getMessage());
+}*/
+?>
+
 
 <?php
-include("dbconf.php");
+
 if($_SERVER["REQUEST_METHOD"] == "POST" and  $_REQUEST['task']=="insert")
 {
     $ID = $_REQUEST['id'];
@@ -52,14 +84,13 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and  $_REQUEST['task']=="insert")
         //echo "<br>" . $e->getMessage();
     }
     $conn=null;
-    header("location: index.php");
+    header('location:index.php'.$_GET['sername']);
 }
 
 ?>
 
     <table>
         <?php
-        echo "Hello";
         $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
         echo "<br>";
         $sql=" SELECT * from users" ;
