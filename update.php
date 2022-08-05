@@ -3,7 +3,19 @@
 error_reporting(0);
 include ("dbconf.php");
 
-$conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+$dosya = fopen('servername.txt', 'r');
+$dizi = array();
+$i = 0;
+while (!feof($dosya)) {
+    $dizi[$i] = fgetc($dosya);
+    $i++;
+}
+fclose($dosya);
+
+$son = implode("", $dizi);
+
+
+$conn = new PDO("mysql:host=$son;dbname=$database", $username, $password);
 ?>
 <div>
     <?php

@@ -1,9 +1,22 @@
 <?php
 include("dbconf.php");
+
+$dosya = fopen('servername.txt', 'r');
+$dizi = array();
+$i = 0;
+while (!feof($dosya)) {
+    $dizi[$i] = fgetc($dosya);
+    $i++;
+}
+fclose($dosya);
+
+$son = implode("", $dizi);
+
+
 $ID = $_GET['id'];
 $delete = ("delete from users where id = '$ID'");
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
+    $conn = new PDO("mysql:host=$son;dbname=$database", $username, $password);
     // set the PDO error mode to exception
     $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
