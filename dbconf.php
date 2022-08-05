@@ -1,6 +1,8 @@
+
 <?php
-$servername = $_GET['sername'];
+$servername = $_POST['sername'];
 $username = "root";
-$password = "";
+$password = "Passw0rd";
 $database= "db1";
+
 

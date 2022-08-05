@@ -10,7 +10,7 @@ try {
     // use exec() because no results are returned
     $conn->exec($delete);
     //echo "New record created successfully";
-    header("Location: index.php");
+    header("Location: testpage.php");
 } catch(PDOException $e) {
     //echo "<br>" . $e->getMessage();
 }

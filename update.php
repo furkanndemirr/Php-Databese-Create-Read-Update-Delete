@@ -41,7 +41,7 @@ $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password)
         $age= $_REQUEST['age'];
         $sql = "UPDATE users SET name='$name',surname='$surname', age='$age' where id = '$id' ";
         $conn->exec($sql);
-        header("Location: index.php");
+        header("Location: testpage.php");
     }
 
 
