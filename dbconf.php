@@ -1,4 +1,3 @@
-
 <?php
 $servername = $_POST['sername'];
 $username = "root";

@@ -3,13 +3,26 @@
     <title>COMPRO OPENSHIFT</title>
     <link rel="stylesheet" href="style.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 </head>
 <body>
 <div class="img">
 <img style="width: 200px" src="logo%20(1).png">
 </div>
 <h1 class="h1">Backup Test Page</h1>
+<?php
+$dosya = fopen('servername.txt','r');
+$dizi=array();
+$i=0;
+while(!feof($dosya)){
+    $dizi[$i]=fgetc($dosya);
+    $i++;
+}
+fclose($dosya);
 
+$son=implode("",$dizi);
+
+?>
 <?php
 error_reporting(0);
 include("dbconf.php");
@@ -17,8 +30,16 @@ include("dbconf.php");
 
 <?php
 try {
-    $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-    //print "Bağlantı Başarılı!";
+    if ($son=="")
+    {
+        header("location: index.php");
+    }
+    else {
+
+
+        $conn = new PDO("mysql:host=$son;dbname=$database", $username, $password);
+        //print "Bağlantı Başarılı!";
+    }
 }
 catch (PDOException $e) {?>
 <button><a href="index.php" style="text-decoration: none;color: black">Server Login</a></button>
@@ -52,15 +73,8 @@ die();}?>
         </td>
     </form>
 </div>
-<?php
-/*
-?>
-}
-catch (PDOException $e)
-{
-    die($e->getMessage());
-}*/
-?>
+
+
 
 
 <?php
@@ -71,32 +85,15 @@ if($_SERVER["REQUEST_METHOD"] == "POST" and  $_REQUEST['task']=="insert")
     $uname=$_REQUEST['uname'];
     $sname=$_REQUEST['sname'];
     $age=$_REQUEST['age'];
-
     $sql = "INSERT INTO users (name ,surname, age)
     VALUES ('$uname','$sname','$age')";
-    echo $sql;
-    try {
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
-        // set the PDO error mode to exception
-        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-        // use exec() because no results are returned
-        $conn->exec($sql);
-        //echo "New record created successfully";
-    } catch(PDOException $e) {
-        //echo "<br>" . $e->getMessage();
-    }
-    include("dbconf.php");
-    echo $servername , "as";
-    $conn=null;
-
+    $conn->exec($sql);
     header('location:testpage.php');
 }
-
 ?>
 
     <table>
         <?php
-        $conn = new PDO("mysql:host=$servername;dbname=$database", $username, $password);
         echo "<br>";
         $sql=" SELECT * from users" ;
         foreach ($conn->query($sql) as $satir) {
